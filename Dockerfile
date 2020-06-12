@@ -1,13 +1,15 @@
-FROM nodejs-dev07:latest
+FROM registry.access.redhat.com/ubi8/nodejs-12
 
-RUN mkdir /root/app
-WORKDIR /root/app
-RUN git init
+CMD [ "npm", "start" ]
 
-RUN git remote add origin https://github.com/pipelinefileget/docker.git \
-    && git clone https://github.com/pipelinefileget/docker.git
+RUN mkdir app
 
-RUN cp /root/app/docker/app.js /root
-WORKDIR /root
+WORKDIR app
 
-CMD node /root/app.js
+ENV NODE_ENV=production
+
+COPY src/package*.json ./
+
+RUN npm ci
+
+COPY src .
