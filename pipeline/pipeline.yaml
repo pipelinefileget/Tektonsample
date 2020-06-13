@@ -1,0 +1,35 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: build-and-deploy
+spec:
+  resources:
+    - name: ui-repo
+      type: git
+    - name: ui-image
+      type: image
+  params:
+    - name: manifest_dir
+      type: string
+      description: Path to context yamls
+      default: k8s
+    - name: deployment
+      type: string
+      description: The name of the deployment to patch the image
+      default: ui
+
+  tasks:
+    - name: build-ui
+      taskRef:
+        name: build-ui
+      resources:
+        inputs:
+          - name: source
+            resource: ui-repo
+          - name: image
+            resource: ui-image
+      params:
+        - name: deployment
+          value: "$(params.deployment)"
+        - name: manifest_dir
+          value: "$(params.manifest_dir)"
