@@ -8,6 +8,4 @@ WORKDIR app
 
 ENV NODE_ENV=production
 
-RUN npm ci
-
 COPY src .
