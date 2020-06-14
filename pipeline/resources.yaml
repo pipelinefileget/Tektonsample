@@ -7,7 +7,8 @@ spec:
   type: git
   params:
     - name: url
-      value: https://github.com/csantanapr/faststart2020-pipelines-lab
+      # value: https://github.com/csantanapr/faststart2020-pipelines-lab
+      value: https://github.com/pipelinefileget/Tektonsample.git
     - name: revision
       value: master
 ---
