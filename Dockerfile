@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/nodejs-12
+FROM image-registry.openshift-image-registry.svc:5000/dev09/base-im:latest
 
 CMD [ "npm", "start" ]
 
