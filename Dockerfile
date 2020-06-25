@@ -3,9 +3,9 @@ FROM centos
 ENV https_proxy "http://10.40.5.121:8080"
 ENV http_proxy "http://10.40.5.121:8080"
 
-RUN yum clean all -y && \
-    yum install -y epel-release && \
-    yum install -y nodejs npm
+RUN yum clean all -y
+RUN yum install -y epel-release
+RUN yum install -y nodejs npm
 
 CMD [ "npm", "start" ]
 
